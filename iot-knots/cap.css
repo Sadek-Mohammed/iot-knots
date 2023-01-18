@@ -1,0 +1,265 @@
+/* Common Styles */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@font-face {
+    font-family: 'icomoon';
+    src:  url('fonts/icomoon.eot?sgvgrg');
+    src:  url('fonts/icomoon.eot?sgvgrg#iefix') format('embedded-opentype'),
+      url('fonts/icomoon.ttf?sgvgrg') format('truetype'),
+      url('fonts/icomoon.woff?sgvgrg') format('woff'),
+      url('fonts/icomoon.svg?sgvgrg#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+  }
+
+  [class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .icon-codeforces:before {
+    content: "\e900";
+    color: #fff;
+  }
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+.icon-codeforces {
+    fill: #000016 !important;
+    width: 32px;
+    height: 32px;
+}
+
+header {
+    background-color: #f0f0f0;
+    width: 100%;
+    position: fixed;
+    z-index: 999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 200px;
+}
+
+.logo {
+    text-decoration: none;
+    color: #3a6cf4;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.8em;
+}
+
+.navigation a {
+    color: #3a6cf4;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 500;
+    padding-left: 30px;
+}
+
+.navigation a:hover {
+    color: #601cfc;
+}
+
+.social-icons a {
+    color: #fff;
+    font-size: 1.7em;
+    padding-right: 30px;
+}
+
+.footer {
+    background-color: #000016;
+    color: #fff;
+    padding: 2em;
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer-title {
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+.footer-title span {
+    color: #3a6cf4;
+}
+
+.footer .social-icons a {
+    color: #fff;
+    font-size: 1.3em;
+    padding: 0 12px 0 0;
+}
+
+/* Start Page */
+.paper-download {
+    text-decoration: none;
+    color: #3a6cf4;
+    background-color: #fff;
+    border: 1px #3a6cf4 solid;
+    padding: 10px;
+    transition: all 0.7s;
+    margin-top: 10px;
+}
+
+.paper-download:hover {
+    background-color: #3a6cf4;
+    color: #fff;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.buttons a {
+    text-align: center;
+}
+.canvas-container{
+    width: 50%;
+}
+@media only screen and (max-width: 700px) {
+    .canvas-container{width: 100%;}
+}
+canvas{
+    max-width: 100%;
+}
+
+.main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 100px 0px 50px;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    color: #3a6cf4;
+    font-size: 2.2em;
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.cards {
+    background-color: #000016;
+}
+
+.card {
+    background-color: #fff;
+    width: 21.25em;
+    box-shadow: 0 5px 25px rgba(1 1 1 / 15%);
+    border-radius: 10px;
+    padding: 25px;
+    margin: 15px;
+    transition: 0.7s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: scale(1.1);
+}
+
+.card .icon {
+    color: #3a6cf4;
+    font-size: 8em;
+    text-align: center;
+}
+
+.info {
+    text-align: center;
+}
+
+.info h3 {
+    color: #3a6cf4;
+    font-size: 1.2em;
+    font-weight: 700;
+    margin: 10px;
+}
+
+.wrapper{
+    padding: 50px 200px;
+}
+
+@media (max-width:1023px) {
+    header {
+        padding: 12px 20px;
+    }
+
+    .navigation a {
+        padding-left: 10px;
+    }
+
+    section,
+    .wrapper,
+    .main {
+        padding: 70px 20px;
+    }
+
+    .title {
+        font-size: 1.8em;
+    }
+
+    .content {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width:641px) {
+    body {
+        font-size: 12px;
+    }
+}
+
+@media (max-width:300px) {
+    body {
+        font-size: 10px;
+    }
+}
+
+.video-container{
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    max-width: 100%;
+    height: 0;
+    overflow: hidden;
+}
+
+.uchicago-iframe{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.canvas-containers{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
