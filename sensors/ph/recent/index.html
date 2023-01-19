@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ph.css">
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+    <script src='https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>IOT Knots | Detailed pH Graphs</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="title">Detailed pH reading from Last Trial</div>
+        <div class="graphs">
+            <div class="canvas-container graph-container">
+                <canvas class="graph" id="phGraphMain"></canvas>
+            </div>
+            <div class="canvas-container graph-container">
+                <canvas class="graph" id="phGraphMin"></canvas>
+            </div>
+            <div class="canvas-container graph-container">
+                <canvas class="graph" id="phGraphMax"></canvas>
+            </div>
+            <div class="canvas-container graph-container">
+                <canvas class="graph" id="phGraphDev"></canvas>
+            </div>
+            <div class="canvas-container graph-container">
+                <canvas class="graph" id="phGraphSkew"></canvas>
+            </div>
+            <div class="canvas-container graph-container">
+                <canvas class="graph" id="phGraphMedian"></canvas>
+            </div>
+            <div class="canvas-container graph-container">
+                <canvas class="graph" id="phGraphMean"></canvas>
+            </div>
+        </div>
+        <footer>
+            <strong>Contact at:</strong> &nbsp;&nbsp;&nbsp; contact@iot-knots.tech
+        </footer>
+    </div>
+    <script src="https://unpkg.com/simple-statistics@7.8.0/dist/simple-statistics.min.js"></script>
+    <script src="ph.js"></script>
+</body>
+
+</html>

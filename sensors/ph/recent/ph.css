@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+.wrapper{
+    max-width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+.title{
+    background-color: #0D63A5;
+    padding: 12px;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    width: 100%;
+}
+
+.graphs{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    padding: 40px 0;
+}
+
+.graph-container{
+    width: 600px;
+    height: 300px;
+    padding: 20px;
+    box-shadow: 1px 1px 10px #134e7a,
+    -1px -1px 10px #134e7a;
+    transition: all 0.5s;
+    margin: 25px 0;
+}
+
+.graph-container:hover{
+    transform: scale(1.1);
+    box-shadow: 1px 1px 20px #134e7a,
+    -1px -1px 20px #134e7a;
+}
+
+.graph{
+    width: 100%;
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #0D63A5;
+    font-weight: 700;
+    color: #fff;
+    width: 100%;
+    /* border: #0D63A5 10px solid; */
+}
+
+@media only screen and (max-width: 750px)
+{
+    .title{
+        font-size: 18px;
+    }
+    .graph-container{
+        width: 80vw;
+        height: 40vw;
+    }
+}
