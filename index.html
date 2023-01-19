@@ -5,85 +5,67 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <link rel="stylesheet" href="cap.css">
-    <link rel="shortcut icon" href="logo final.png" type="image/x-icon">
-    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
-    <script src='https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js'></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <title>Sadek M. ElSayed | IoT Knots</title>
+    <link rel="stylesheet" href="style.css">
+    <title>IOT Knots | Homepage</title>
 </head>
 
 <body>
-
-    <header>
-        <a href="/" class="logo" style="height: 1.8em;">
-            Cap 333
-        </a>
-        <nav class="navigation">
-            <a href="/ph.html">PH</a>
-            <a href="/air.html">Air Quality</a>
-            <a href="/level.html">Water Level</a>
-            <a href="/temp.html">Temperature</a>
-        </nav>
-    </header>
     <div class="wrapper">
-        <section class="main">
-            <div class="title">
-                Cap Group 333 | IoT Knots
+        <div class="main-photo">
+            <img src="logo.png" alt="">
+        </div>
+        <div class="main-links">
+            <div class="main-link main-link-1">
+                <div class="main-icon">
+                    <a href="sensors.html">
+                        <img src="icons/sensors.png" alt="Sensors' Data">
+                    </a>
+                </div>
+                <div class="icon-title">
+                    <a href="sensors.html">
+                        Sensors' Data
+                    </a>
+                </div>
             </div>
-            <div class="main-content">
-                This is the website for displaying the Capstone group's project. It contains all the file deliverables
-                of the group,
-                along with the climate change app. The file deliverables are a portfolio research paper of four distinct
-                chapters, a full-size poster, and an A4 poster. The climate change app uses a self-coded firebase
-                real-time non-relational database to store
-                data of four sensors (air quality sensor, water level sensor, temperature sensor, and a pH sensor) sent
-                by
-                an ESP8266 module. Data are sent via HTTP requests from the ESP and handled by the Firebase Database
-                server. The website then fetches that data from
-                the Firebase Database and puts them into graphs with help from the JavaScript chart.js library. The
-                Simple Statistics JavaScript library calculates mean, median, min, max, standard-deviation, and sample
-                skewness after each new sensor reading and plots them on the website.
+            <div class="main-link main-link-2">
+                <div class="main-icon">
+                    <a href="gallery">
+                        <img src="icons/gallery.png" alt="Gallery">
+                    </a>
+                </div>
+                <div class="icon-title">
+                    <a href="gallery">
+                        Gallery
+                    </a>
+                </div>
             </div>
-            <div class="buttons">
-                <a href="portfolio.pdf" class="paper-download">Download Portfolio</a>
-                <a href="A4.pdf" class="paper-download">Download A4 Poster</a>
-                <a href="poster.pdf" class="paper-download">Download Full-size Poster</a>
+            <div class="main-link main-link-3">
+                <div class="main-icon">
+                    <a href="about">
+                        <img src="icons/info.png" alt="About">
+                    </a>
+                </div>
+                <div class="icon-title">
+                    <a href="about">
+                        About Us
+                    </a>
+                </div>
             </div>
-        </section>
-        <section class="canvas-containers">
-            <div class="canvas-container">
-                <canvas style="width: 100%; height: 100%;" id="phGraph"></canvas>
+            <div class="main-link main-link-4">
+                <div class="main-icon">
+                    <a href="download">
+                        <img src="icons/portfolio.png" alt="Portfolio">
+                    </a>
+                </div>
+                <div class="icon-title">
+                    <a href="download">
+                        Portfolio & Poster
+                    </a>
+                </div>
             </div>
-            <div class="canvas-container">
-                <canvas style="width: 100%; height: 100%;" id="tempGraph"></canvas>
-            </div>
-            <div class="canvas-container">
-                <canvas style="width: 100%; height: 100%;" id="levelGraph"></canvas>
-            </div>
-            <div class="canvas-container">
-                <canvas style="width: 100%; height: 100%;" id="airGraph"></canvas>
-            </div>
-        </section>
+        </div>
     </div>
 
-
-    <footer class="footer">
-        <div class="social-icons">
-            <a href="https://www.linkedin.com/in/sadek-mohammed-7a38a71b2/"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/Sadek-Mohammed"><i class="fab fa-github"></i></a>
-            <a href="http://codeforces.com/profile/Sadek_Mo" id="codeforces-container">
-                <span class="icon-codeforces"></span>
-            </a>
-        </div>
-        <div class="email">
-            Contact at: me@sadek.me
-        </div>
-    </footer>
-
-    <script src="https://unpkg.com/simple-statistics@7.8.0/dist/simple-statistics.min.js"></script>
-    <script src="cap.js"></script>
 </body>
 
 </html>
