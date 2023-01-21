@@ -28,7 +28,6 @@ let ph = {
     min: [],
     max: [],
     median: [],
-    skew: [],
     dev: []
 };
 
@@ -38,7 +37,6 @@ let level = {
     min: [],
     max: [],
     median: [],
-    skew: [],
     dev: []
 };
 
@@ -48,7 +46,6 @@ let temp = {
     min: [],
     max: [],
     median: [],
-    skew: [],
     dev: []
 };
 
@@ -58,7 +55,6 @@ let air = {
     min: [],
     max: [],
     median: [],
-    skew: [],
     dev: []
 };
 
@@ -70,31 +66,25 @@ const register = (newer, ph) => {
     ph.max.push(ss.max(ph.reading));
     ph.min.push(ss.min(ph.reading));
     ph.dev.push(ss.medianAbsoluteDeviation(ph.reading));
-    if (lengther >= 3) {
-        ph.skew.push(ss.sampleSkewness(ph.reading));
-    }
-    else {
-        ph.skew.push(0);
-    }
 }
 
 // 1 2 3
 // 0 1 2
 // 0 1
-var firebaseRef = firebase.database().ref("test");
+var firebaseRef = firebase.database().ref("now");
 firebaseRef.once("value").then((snapshot) => {
     let counter = 0;
-    console.log(snapshot.val());
-    let newerPh = 0, newerLevel = 0, newerAir = 0, newerTemp = 0;
-    snapshot.val().forEach((one) => {
-        timer.push(counter);
-        newerPh = one.pH, newerLevel = one["water-level"], newerAir = one["air-quality"], newerTemp = one["temperature"];
-        register(newerPh, ph)
-        register(newerLevel, level)
-        register(newerAir, air)
-        register(newerTemp, temp)
-        counter += 2;
-    })
+    console.log(snapshot.val().air);
+    // let newerPh = 0, newerLevel = 0, newerAir = 0, newerTemp = 0;
+    // snapshot.val().forEach((one) => {
+    //     timer.push(counter);
+    //     newerPh = one.pH, newerLevel = one["water-level"], newerAir = one["air-quality"], newerTemp = one["temperature"];
+    //     register(newerPh, ph)
+    //     register(newerLevel, level)
+    //     register(newerAir, air)
+    //     register(newerTemp, temp)
+    //     counter += 2;
+    // })
     console.log(ph.reading);
     console.log(ph.min);
     console.log(ph.max);
@@ -114,6 +104,7 @@ firebaseRef.once("value").then((snapshot) => {
             }]
         },
         options: {
+            maintainAspectRatio: false,
             scales: {
                 y: {
                     beginAtZero: true
@@ -175,24 +166,6 @@ firebaseRef.once("value").then((snapshot) => {
             }
         }
     });
-    new Chart(document.getElementById(`phGraphSkew`), {
-        type: 'line',
-        data: {
-            labels: timer,
-            datasets: [{
-                label: `pH Sample Skewness`,
-                data: ph.skew,
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
     new Chart(document.getElementById(`phGraphDev`), {
         type: 'line',
         data: {
@@ -229,4 +202,28 @@ firebaseRef.once("value").then((snapshot) => {
             }
         }
     });
-})
+}).then(() => {
+    let skewness = ss.sampleSkewness(ph.reading);
+    document.getElementById("skewness").innerText = skewness;
+    if (skewness <= 0.5 && skewness >= -0.5) {
+        document.getElementById("state").innerText = "Graph is generally symmetric.";
+        document.getElementById("conclusions").innerHTML = `                <li>Generally, it is the phase of natural change. However, if preventive measures aren't taken, some
+        <strong>real</strong> problems may happen
+    </li>
+    <li>These measures are mainly about maintaining CO2 emissions at a low level. </li>
+    <li>To do so, changes start from decreasing the carboon footprint for each individual.</li>
+    <li>Changes extend to the level of whole companies, institutions, and educational buildings.</li>`;
+    }
+    else if (skewness <= 1 && skewness >= -1) {
+        document.getElementById("state").innerText = "Graph is moderately skewed.";
+        document.getElementById("conclusions").innerHTML = `                <li>Although situtation isn't that threatening, rapid actions should be taken.</li>
+        <li>In addition to decreasing individuals' carboon footprint, the factories' consumption should be
+            limited.</li>
+        <li>More focus on motivational awards for people who obey the environmental rules is required.</li>
+        <li>Discounts on services that save the environment like solar panels, publich transportation, and many
+            more.</li>`;
+    }
+    else {
+
+    }
+});
