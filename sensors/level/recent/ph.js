@@ -71,20 +71,20 @@ const register = (newer, ph) => {
 // 1 2 3
 // 0 1 2
 // 0 1
-var firebaseRef = firebase.database().ref("now");
+var firebaseRef = firebase.database().ref("test");
 firebaseRef.once("value").then((snapshot) => {
     let counter = 0;
-    console.log(snapshot.val().air);
-    // let newerPh = 0, newerLevel = 0, newerAir = 0, newerTemp = 0;
-    // snapshot.val().forEach((one) => {
-    //     timer.push(counter);
-    //     newerPh = one.pH, newerLevel = one["water-level"], newerAir = one["air-quality"], newerTemp = one["temperature"];
-    //     register(newerPh, ph)
-    //     register(newerLevel, level)
-    //     register(newerAir, air)
-    //     register(newerTemp, temp)
-    //     counter += 2;
-    // })
+    console.log(snapshot.val());
+    let newerPh = 0, newerLevel = 0, newerAir = 0, newerTemp = 0;
+    snapshot.val().forEach((one) => {
+        timer.push(counter);
+        newerPh = one.pH, newerLevel = one["water-level"], newerAir = one["air-quality"], newerTemp = one["temperature"];
+        register(newerPh, ph)
+        register(newerLevel, level)
+        register(newerAir, air)
+        register(newerTemp, temp)
+        counter += 5;
+    })
     console.log(ph.reading);
     console.log(ph.min);
     console.log(ph.max);
@@ -98,8 +98,8 @@ firebaseRef.once("value").then((snapshot) => {
         data: {
             labels: timer,
             datasets: [{
-                label: `pH reading`,
-                data: ph.reading,
+                label: `Water Level reading`,
+                data: level.reading,
                 borderWidth: 1
             }]
         },
@@ -117,8 +117,8 @@ firebaseRef.once("value").then((snapshot) => {
         data: {
             labels: timer,
             datasets: [{
-                label: `pH Minimum Value`,
-                data: ph.min,
+                label: `Water Level Minimum Value`,
+                data: level.min,
                 borderWidth: 1
             }]
         },
@@ -135,8 +135,8 @@ firebaseRef.once("value").then((snapshot) => {
         data: {
             labels: timer,
             datasets: [{
-                label: `pH Maximum Value`,
-                data: ph.max,
+                label: `Water Level Maximum Value`,
+                data: level.max,
                 borderWidth: 1
             }]
         },
@@ -153,8 +153,8 @@ firebaseRef.once("value").then((snapshot) => {
         data: {
             labels: timer,
             datasets: [{
-                label: `pH Average Value`,
-                data: ph.mean,
+                label: `Water Level Average Value`,
+                data: level.mean,
                 borderWidth: 1
             }]
         },
@@ -171,8 +171,8 @@ firebaseRef.once("value").then((snapshot) => {
         data: {
             labels: timer,
             datasets: [{
-                label: `pH Media Abdolute Deviation`,
-                data: ph.dev,
+                label: `Water Level Media Abdolute Deviation`,
+                data: level.dev,
                 borderWidth: 1
             }]
         },
@@ -189,8 +189,8 @@ firebaseRef.once("value").then((snapshot) => {
         data: {
             labels: timer,
             datasets: [{
-                label: `pH Median Value`,
-                data: ph.median,
+                label: `Water Level Median Value`,
+                data: level.median,
                 borderWidth: 1
             }]
         },
@@ -203,7 +203,7 @@ firebaseRef.once("value").then((snapshot) => {
         }
     });
 }).then(() => {
-    let skewness = ss.sampleSkewness(ph.reading);
+    let skewness = ss.sampleSkewness(level.reading);
     document.getElementById("skewness").innerText = skewness;
     if (skewness <= 0.5 && skewness >= -0.5) {
         document.getElementById("state").innerText = "Graph is generally symmetric.";

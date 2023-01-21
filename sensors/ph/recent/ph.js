@@ -83,7 +83,7 @@ firebaseRef.once("value").then((snapshot) => {
         register(newerLevel, level)
         register(newerAir, air)
         register(newerTemp, temp)
-        counter += 2;
+        counter += 5;
     })
     console.log(ph.reading);
     console.log(ph.min);

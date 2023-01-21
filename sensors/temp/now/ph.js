@@ -28,7 +28,6 @@ let ph = {
     min: [],
     max: [],
     median: [],
-    skew: [],
     dev: []
 };
 
@@ -38,7 +37,6 @@ let level = {
     min: [],
     max: [],
     median: [],
-    skew: [],
     dev: []
 };
 
@@ -48,7 +46,6 @@ let temp = {
     min: [],
     max: [],
     median: [],
-    skew: [],
     dev: []
 };
 
@@ -58,7 +55,6 @@ let air = {
     min: [],
     max: [],
     median: [],
-    skew: [],
     dev: []
 };
 
@@ -70,18 +66,12 @@ const register = (newer, ph) => {
     ph.max.push(ss.max(ph.reading));
     ph.min.push(ss.min(ph.reading));
     ph.dev.push(ss.medianAbsoluteDeviation(ph.reading));
-    if (lengther >= 3) {
-        ph.skew.push(ss.sampleSkewness(ph.reading));
-    }
-    else {
-        ph.skew.push(0);
-    }
 }
 
 // 1 2 3
 // 0 1 2
 // 0 1
-var firebaseRef = firebase.database().ref("test");
+var firebaseRef = firebase.database().ref("now");
 firebaseRef.once("value").then((snapshot) => {
     let counter = 0;
     console.log(snapshot.val());
@@ -93,7 +83,7 @@ firebaseRef.once("value").then((snapshot) => {
         register(newerLevel, level)
         register(newerAir, air)
         register(newerTemp, temp)
-        counter += 2;
+        counter += 5;
     })
     console.log(ph.reading);
     console.log(ph.min);
@@ -108,12 +98,13 @@ firebaseRef.once("value").then((snapshot) => {
         data: {
             labels: timer,
             datasets: [{
-                label: `pH reading`,
-                data: ph.reading,
+                label: `Temperature reading`,
+                data: temp.reading,
                 borderWidth: 1
             }]
         },
         options: {
+            maintainAspectRatio: false,
             scales: {
                 y: {
                     beginAtZero: true
@@ -126,8 +117,8 @@ firebaseRef.once("value").then((snapshot) => {
         data: {
             labels: timer,
             datasets: [{
-                label: `pH Minimum Value`,
-                data: ph.min,
+                label: `Temperature Minimum Value`,
+                data: temp.min,
                 borderWidth: 1
             }]
         },
@@ -144,8 +135,8 @@ firebaseRef.once("value").then((snapshot) => {
         data: {
             labels: timer,
             datasets: [{
-                label: `pH Maximum Value`,
-                data: ph.max,
+                label: `Temperature Maximum Value`,
+                data: temp.max,
                 borderWidth: 1
             }]
         },
@@ -162,26 +153,8 @@ firebaseRef.once("value").then((snapshot) => {
         data: {
             labels: timer,
             datasets: [{
-                label: `pH Average Value`,
-                data: ph.mean,
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-    new Chart(document.getElementById(`phGraphSkew`), {
-        type: 'line',
-        data: {
-            labels: timer,
-            datasets: [{
-                label: `pH Sample Skewness`,
-                data: ph.skew,
+                label: `Temperature Average Value`,
+                data: temp.mean,
                 borderWidth: 1
             }]
         },
@@ -198,8 +171,8 @@ firebaseRef.once("value").then((snapshot) => {
         data: {
             labels: timer,
             datasets: [{
-                label: `pH Media Abdolute Deviation`,
-                data: ph.dev,
+                label: `Temperature Media Abdolute Deviation`,
+                data: temp.dev,
                 borderWidth: 1
             }]
         },
@@ -216,8 +189,8 @@ firebaseRef.once("value").then((snapshot) => {
         data: {
             labels: timer,
             datasets: [{
-                label: `pH Median Value`,
-                data: ph.median,
+                label: `Temperature Median Value`,
+                data: temp.median,
                 borderWidth: 1
             }]
         },
@@ -229,4 +202,28 @@ firebaseRef.once("value").then((snapshot) => {
             }
         }
     });
-})
+}).then(() => {
+    let skewness = ss.sampleSkewness(temp.reading);
+    document.getElementById("skewness").innerText = skewness;
+    if (skewness <= 0.5 && skewness >= -0.5) {
+        document.getElementById("state").innerText = "Graph is generally symmetric.";
+        document.getElementById("conclusions").innerHTML = `                <li>Generally, it is the phase of natural change. However, if preventive measures aren't taken, some
+        <strong>real</strong> problems may happen
+    </li>
+    <li>These measures are mainly about maintaining CO2 emissions at a low level. </li>
+    <li>To do so, changes start from decreasing the carboon footprint for each individual.</li>
+    <li>Changes extend to the level of whole companies, institutions, and educational buildings.</li>`;
+    }
+    else if (skewness <= 1 && skewness >= -1) {
+        document.getElementById("state").innerText = "Graph is moderately skewed.";
+        document.getElementById("conclusions").innerHTML = `                <li>Although situtation isn't that threatening, rapid actions should be taken.</li>
+        <li>In addition to decreasing individuals' carboon footprint, the factories' consumption should be
+            limited.</li>
+        <li>More focus on motivational awards for people who obey the environmental rules is required.</li>
+        <li>Discounts on services that save the environment like solar panels, publich transportation, and many
+            more.</li>`;
+    }
+    else {
+
+    }
+});

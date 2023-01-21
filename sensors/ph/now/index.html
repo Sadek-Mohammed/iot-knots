@@ -5,68 +5,55 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="ph.css">
-    <link rel="shortcut icon" href="logo final.png" type="image/x-icon">
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
     <script src='https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <title>Sadek M. ElSayed | UChicago Optional Video Profile</title>
+    <title>IOT Knots | Detailed pH Graphs Just Now</title>
 </head>
 
 <body>
-
-    <header>
-        <a href="/" class="logo" style="height: 1.8em;">
-            Cap 333
-        </a>
-        <nav class="navigation">
-            <a href="/ph.html">PH</a>
-            <a href="/air.html">Air Quality</a>
-            <a href="/level.html">Water Level</a>
-            <a href="/temp.html">Temperature</a>
-        </nav>
-    </header>
     <div class="wrapper">
-        <section class="main">
-            <div class="title">
-                IOT Knots | Detailed pH Graphs
+        <div class="title">Detailed pH reading just now</div>
+        <div class="graphs">
+            <div class="canvas-container graph-container">
+                <canvas class="graph" id="phGraphMain"></canvas>
             </div>
-            <div class="main-content">
+            <div class="canvas-container graph-container">
+                <canvas class="graph" id="phGraphMin"></canvas>
             </div>
-        </section>
-        <section class="canvas-containers">
-            <div class="canvas-container">
-                <canvas style="width: 100%; height: 100%;" id="phGraphMain"></canvas>
+            <div class="canvas-container graph-container">
+                <canvas class="graph" id="phGraphMax"></canvas>
             </div>
-            <div class="canvas-container">
-                <canvas style="width: 100%; height: 100%;" id="phGraphMin"></canvas>
+            <div class="canvas-container graph-container">
+                <canvas class="graph" id="phGraphDev"></canvas>
             </div>
-            <div class="canvas-container">
-                <canvas style="width: 100%; height: 100%;" id="phGraphMax"></canvas>
+            <div class="canvas-container graph-container">
+                <canvas class="graph" id="phGraphMedian"></canvas>
             </div>
-            <div class="canvas-container">
-                <canvas style="width: 100%; height: 100%;" id="phGraphDev"></canvas>
+            <div class="canvas-container graph-container">
+                <canvas class="graph" id="phGraphMean"></canvas>
             </div>
-            <div class="canvas-container">
-                <canvas style="width: 100%; height: 100%;" id="phGraphSkew"></canvas>
-            </div>
-            <div class="canvas-container">
-                <canvas style="width: 100%; height: 100%;" id="phGraphMedian"></canvas>
-            </div>
-            <div class="canvas-container">
-                <canvas style="width: 100%; height: 100%;" id="phGraphMean"></canvas>
-            </div>
-        </section>
-    </div>
-
-
-    <footer class="footer">
-        <div class="email">
-            Contact at: contact@iot-knots.tech
         </div>
-    </footer>
-
+        <div class="analysis">
+            <div class="title">
+                Conclusions
+            </div>
+            <div class="label">
+                Sample Skewness is: <span id="skewness"></span>, which means that: <span id="state"></span>
+            </div>
+            <ul id="conclusions">
+                <li>The situation is <strong>EXTREMELY</strong> threatening, urging effective solutions.</li>
+                <li>In addition to decreasing individuals' carboon footprint, the factories' footprint should be
+                    limited.</li>
+                <li>Discounts on services that save the environment like solar panels, publich transportation, and many
+                    more.</li>
+            </ul>
+        </div>
+        <footer>
+            <strong>Contact at:</strong> &nbsp;&nbsp;&nbsp; contact@iot-knots.tech
+        </footer>
+    </div>
     <script src="https://unpkg.com/simple-statistics@7.8.0/dist/simple-statistics.min.js"></script>
     <script src="ph.js"></script>
 </body>
